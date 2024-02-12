@@ -1,0 +1,51 @@
+body{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;    width: 95%;
+   
+}
+
+.shopping-cart h1 {
+    text-align: center;
+}
+
+.cart-container{
+    margin: 5px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.checkout-container{
+    background-color: lightgray;
+    padding: 5px;
+}
+
+.products{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cart{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+.products img{
+    width: 200px;
+}
+
+.cart img{
+    width: 200px;
+}

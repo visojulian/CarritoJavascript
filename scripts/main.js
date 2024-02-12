@@ -16,7 +16,7 @@ let data = [
         price: 1,
         quantity: 0,
         productId: 2,
-        image: "./images/tuerca.jpg"
+        image: "./images/tuerca.jfif"
     },
     
     {
@@ -96,18 +96,13 @@ function pay (amount){
 
 
 
+// probar funciones
 
-// addProductToCart(1);
-// addProductToCart(2);
-// addProductToCart(3);
-
-
-// cartTotal()
-
-
-// console.log(cart);
-// console.log(cartTotal())
-// console.log(pay(5))
+addProductToCart(1);
+addProductToCart(2);
+addProductToCart(3);
+addProductToCart(2);
+increaseQuantity(3);
 
 
 
@@ -115,3 +110,41 @@ function pay (amount){
 
 
 
+
+
+
+
+// INSERTAR EN HTML
+
+
+function insertProducts (product){
+    const div = document.querySelector("#products");
+    div.insertAdjacentHTML(
+        "beforeend",
+        `<div class="product-item">
+        <img class="product-image" src=${product.image} alt=${product.image}>
+        <p class="product-text">${product.name}</p>
+        <p class="product-text">price: $${product.price}</p>
+        <button class="add-button" type="button">Add to cart</button>
+        </div>`
+    )
+}
+
+products.forEach((product)=>insertProducts(product));
+
+function insertCartProducts (product){
+    const div = document.querySelector("#cart");
+    div.insertAdjacentHTML(
+        "beforeend",
+        `<div class="cart-item">
+        <p class="product-name">${product.name}</p>
+        <p class="product-text">price: $${product.price}</p>
+        <p class="product-text">quantity: ${product.quantity}</p>
+        <button class="increase-button" type="button">+</button>
+        <button class="decrease-button" type="button">-</button>
+        <button class="remove-button" type="button">REMOVE</button>
+        </div>`
+    )
+}
+
+cart.forEach((product)=>insertCartProducts(product));
