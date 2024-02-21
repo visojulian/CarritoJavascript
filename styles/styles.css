@@ -49,3 +49,11 @@ body{
 .cart img{
     width: 200px;
 }
+
+.add-button#add-button2{
+    color: red;
+}
+
+.remove-button#remove-button2{
+    color: red;
+}

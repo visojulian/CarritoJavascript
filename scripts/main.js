@@ -32,8 +32,6 @@ let data = [
 data.forEach((data)=>products.push(data));
 
 
-
-
 let cart = [];
 
 function addProductToCart (productId){
@@ -43,8 +41,14 @@ function addProductToCart (productId){
     }});
     product.quantity+=1;
     if(!cart.includes(product)){
-        cart.push(product);
+        cart.push(product);   
     }
+    const div = document.querySelector("#cart");
+    div.innerHTML="";
+    cart.forEach((product)=>insertCartProducts(product));
+
+    removeCartButtons()
+
 };
 
 function increaseQuantity (productId){
@@ -77,6 +81,14 @@ function removeProductFromCart (productId){
     product.quantity=0;
     let index=cart.indexOf(product);
     cart.splice(index,1);
+
+
+    const div = document.querySelector("#cart");
+    div.innerHTML="";
+    cart.forEach((product)=>insertCartProducts(product));
+
+    removeCartButtons()
+
 }
 
 function cartTotal (){
@@ -95,25 +107,6 @@ function pay (amount){
 }
 
 
-
-// probar funciones
-
-addProductToCart(1);
-addProductToCart(2);
-addProductToCart(3);
-addProductToCart(2);
-increaseQuantity(3);
-
-
-
-
-
-
-
-
-
-
-
 // INSERTAR EN HTML
 
 
@@ -125,7 +118,7 @@ function insertProducts (product){
         <img class="product-image" src=${product.image} alt=${product.image}>
         <p class="product-text">${product.name}</p>
         <p class="product-text">price: $${product.price}</p>
-        <button class="add-button" type="button">Add to cart</button>
+        <button class="add-button" id="add-button${product.productId}" type="button">Add to cart</button>
         </div>`
     )
 }
@@ -142,9 +135,45 @@ function insertCartProducts (product){
         <p class="product-text">quantity: ${product.quantity}</p>
         <button class="increase-button" type="button">+</button>
         <button class="decrease-button" type="button">-</button>
-        <button class="remove-button" type="button">REMOVE</button>
+        <button class="remove-button" id="remove-button${product.productId}" type="button">REMOVE</button>
         </div>`
     )
 }
 
-cart.forEach((product)=>insertCartProducts(product));
+
+//Funciones y botones
+
+let addToCartButtons = []
+
+products.forEach((product)=>
+addToCartButtons.push(document.getElementById(`add-button${product.productId}`))
+)
+
+addToCartButtons.forEach((button, index)=>
+    button.addEventListener("click",()=>addProductToCart(products[index].productId))
+)
+
+
+function removeCartButtons (){
+
+    let removeCartButtons = []
+    cart.forEach((product)=>
+    removeCartButtons.push(document.getElementById(`remove-button${product.productId}`))
+    )
+    
+    removeCartButtons.forEach((button, index)=>
+    button.addEventListener("click",()=>removeProductFromCart(products[index].productId))
+    )
+    
+    console.log(removeCartButtons)
+}
+
+
+
+
+
+
+
+
+
+
